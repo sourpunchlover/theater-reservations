@@ -1,6 +1,9 @@
 package com.pluralsight;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class TheaterReservations {
     public static void main(String[] args) {
@@ -12,7 +15,22 @@ public class TheaterReservations {
         System.out.print("Enter date of show you are attending (MM/dd/yyy): ");
         String showDate = scanner.nextLine().trim();
         System.out.print("How many tickets are needed? ");
-        String numTickets = scanner.nextLine().trim();
+        int numTickets = scanner.nextInt();
+
+
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate today = LocalDate.parse(showDate, format);
+        String[] splitInput = fullName.split(Pattern.quote(" "));
+        String firstName = splitInput[0];
+        String lastName = splitInput[1];
+
+        if (numTickets == 1){
+            System.out.println(numTickets + " Ticket reserved for " + showDate + " under " + lastName + ", " + firstName);
+
+        }else{
+            System.out.println(numTickets + " Tickets reserved for " + showDate + " under " + lastName + ", " + firstName);
+        }
+
 
     }
 }
